@@ -48,5 +48,21 @@
 {{- end }}
 {{- partial "mathjax.html" . -}}
 <script>hljs.initHighlightingOnLoad();</script>
+<script>
+	var client = algoliasearch("YEKQ3C8IG8", "ee04610807d354a8660b4a8c3ce88354");
+	var index = client.initIndex('tecker-blog');
+	autocomplete('#aa-search-input',
+	{ hint: false}, {
+		source: autocomplete.sources.hits(index, {hitsPerPage: 8}),
+		displayKey: 'name',
+		templates: {
+			suggestion: function(suggestion) {
+				//console.log(suggestion);
+				return '<span>' + '<a href="' + suggestion.permalink + '">' +
+				suggestion._highlightResult.title.value + '</a></span>';
+			}
+		}
+	});
+</script>
 </body>
 </html>

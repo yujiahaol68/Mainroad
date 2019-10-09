@@ -1,5 +1,5 @@
-{{ if and .Site.DisqusShortname (index .Params "comments" | default "true") (not .Site.IsServer) }}
+{{ if and .Params.gitalk.enable (index .Params "comments" | default "true") (not .Site.IsServer) }}
 <section class="comments">
-	{{ template "_internal/disqus.html" . }}
+	{{ partial "gitalk.html" . }}
 </section>
 {{ end }}
