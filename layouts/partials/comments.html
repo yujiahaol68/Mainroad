@@ -1,4 +1,4 @@
-{{ if and .Params.gitalk.enable (index .Params "comments" | default "true") (not .Site.IsServer) }}
+{{ if and .Site.Params.gitalk.enable (and (index .Params "comments" | default "true") (not .Site.IsServer)) }}
 <section class="comments">
 	{{ partial "gitalk.html" . }}
 </section>
